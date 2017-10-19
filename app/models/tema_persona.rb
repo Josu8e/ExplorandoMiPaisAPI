@@ -1,0 +1,2 @@
+class TemaPersona < ApplicationRecord
+end

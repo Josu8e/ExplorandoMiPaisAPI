@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  video: MyString
+  foto: MyString
+  cupoMax: 1
+  descripcion: MyString
+  encargado: 1
+  rangoCancelacion: 
+
+two:
+  video: MyString
+  foto: MyString
+  cupoMax: 1
+  descripcion: MyString
+  encargado: 1
+  rangoCancelacion: 

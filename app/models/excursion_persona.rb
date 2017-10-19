@@ -1,0 +1,2 @@
+class ExcursionPersona < ApplicationRecord
+end

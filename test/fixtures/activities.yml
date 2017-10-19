@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fechaInicio: 2017-10-18
+  fechaFinal: 2017-10-18
+  horaLlegada: 2017-10-18
+  horaSalida: 2017-10-18
+  theme_id: 1
+
+two:
+  fechaInicio: 2017-10-18
+  fechaFinal: 2017-10-18
+  horaLlegada: 2017-10-18
+  horaSalida: 2017-10-18
+  theme_id: 1

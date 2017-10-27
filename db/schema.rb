@@ -12,10 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20171019033726) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "activities", force: :cascade do |t|
+  create_table "activities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.date "fechaInicio"
     t.date "fechaFinal"
     t.date "horaLlegada"
@@ -26,14 +23,14 @@ ActiveRecord::Schema.define(version: 20171019033726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "excursion_personas", force: :cascade do |t|
+  create_table "excursion_personas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "excursion_id"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "excursions", force: :cascade do |t|
+  create_table "excursions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "video"
     t.string "foto"
     t.integer "cupoMax"
@@ -45,14 +42,14 @@ ActiveRecord::Schema.define(version: 20171019033726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "extras", force: :cascade do |t|
+  create_table "extras", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "transport_id"
     t.string "nombre"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "payments", force: :cascade do |t|
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "monto"
     t.date "fecha"
     t.integer "person_id"
@@ -61,7 +58,7 @@ ActiveRecord::Schema.define(version: 20171019033726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "people", force: :cascade do |t|
+  create_table "people", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "correo"
     t.string "foto"
     t.string "contrasenha"
@@ -70,14 +67,14 @@ ActiveRecord::Schema.define(version: 20171019033726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "photos", force: :cascade do |t|
+  create_table "photos", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "foto"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "places", force: :cascade do |t|
+  create_table "places", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "ubicacion"
     t.string "nombre"
     t.string "descripcion"
@@ -85,21 +82,21 @@ ActiveRecord::Schema.define(version: 20171019033726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "services", force: :cascade do |t|
+  create_table "services", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "servicio"
     t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "tema_personas", force: :cascade do |t|
+  create_table "tema_personas", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer "theme_id"
     t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "themes", force: :cascade do |t|
+  create_table "themes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "nombre"
     t.string "descripcion"
     t.string "foto"
@@ -108,7 +105,7 @@ ActiveRecord::Schema.define(version: 20171019033726) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "transports", force: :cascade do |t|
+  create_table "transports", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "foto"
     t.string "descripcion"
     t.integer "excursion_id"

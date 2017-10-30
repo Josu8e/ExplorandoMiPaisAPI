@@ -1,7 +1,9 @@
 class PeopleController < ApplicationController
     
     def index
-        render json: {'status' => 'FUNCA'}, status => 'ok'
-    end        
+        people = Person.all
+      render json: people
+    end
+
 
 end

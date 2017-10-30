@@ -6,6 +6,7 @@ class CreatePeople < ActiveRecord::Migration[5.1]
       t.string :contrasenha
       t.integer :excursion_persona_id
 
+
       t.timestamps
     end
   end

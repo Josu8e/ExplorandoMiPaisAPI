@@ -1,2 +1,3 @@
 class Excursion < ApplicationRecord
+
 end

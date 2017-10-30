@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   
   get '/test' => 'people#index'
   post 'people/create'
+  post 'people/delete'
+  get   'people/show'
+  get   'people/login'
   #get '/getExcursiones/:parametro' => nombrecontrolador#nombremetodo
 
 end

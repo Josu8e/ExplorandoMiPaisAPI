@@ -25,7 +25,7 @@ class AddForeigns < ActiveRecord::Migration[5.1]
     add_reference :extras, :transports, foreign_key:true
 
 
-    
+
 
 
 

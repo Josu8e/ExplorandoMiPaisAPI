@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171030165009) do
+ActiveRecord::Schema.define(version: 20171101010449) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,21 +20,19 @@ ActiveRecord::Schema.define(version: 20171030165009) do
     t.date "fechaFinal"
     t.date "horaLlegada"
     t.date "horaSalida"
-    t.integer "theme_id"
-    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "places_id"
-    t.bigint "themes_id"
     t.index ["places_id"], name: "index_activities_on_places_id"
-    t.index ["themes_id"], name: "index_activities_on_themes_id"
   end
 
   create_table "excursion_personas", force: :cascade do |t|
-    t.integer "excursion_id"
-    t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "excursions_id"
+    t.bigint "people_id"
+    t.index ["excursions_id"], name: "index_excursion_personas_on_excursions_id"
+    t.index ["people_id"], name: "index_excursion_personas_on_people_id"
   end
 
   create_table "excursions", force: :cascade do |t|
@@ -44,31 +42,17 @@ ActiveRecord::Schema.define(version: 20171030165009) do
     t.string "descripcion"
     t.integer "encargado"
     t.integer "rangoCancelacion"
-    t.integer "excursion_persona_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "excursion_personas_id"
+    t.bigint "transports_id"
     t.bigint "activities_id"
-    t.bigint "transports_id"
     t.index ["activities_id"], name: "index_excursions_on_activities_id"
-    t.index ["excursion_personas_id"], name: "index_excursions_on_excursion_personas_id"
     t.index ["transports_id"], name: "index_excursions_on_transports_id"
-  end
-
-  create_table "extras", force: :cascade do |t|
-    t.integer "transport_id"
-    t.string "nombre"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "transports_id"
-    t.index ["transports_id"], name: "index_extras_on_transports_id"
   end
 
   create_table "payments", force: :cascade do |t|
     t.integer "monto"
     t.date "fecha"
-    t.integer "person_id"
-    t.integer "excursion_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "people_id"
@@ -78,22 +62,17 @@ ActiveRecord::Schema.define(version: 20171030165009) do
   end
 
   create_table "people", force: :cascade do |t|
+    t.string "nombre"
     t.string "correo"
     t.string "foto"
     t.string "contrasenha"
     t.integer "excursion_persona_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "tema_personas_id"
-    t.bigint "excursion_personas_id"
-    t.string "name"
-    t.index ["excursion_personas_id"], name: "index_people_on_excursion_personas_id"
-    t.index ["tema_personas_id"], name: "index_people_on_tema_personas_id"
   end
 
   create_table "photos", force: :cascade do |t|
     t.string "foto"
-    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "places_id"
@@ -108,52 +87,67 @@ ActiveRecord::Schema.define(version: 20171030165009) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "services", force: :cascade do |t|
-    t.string "servicio"
-    t.integer "place_id"
+  create_table "service_places", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "places_id"
-    t.index ["places_id"], name: "index_services_on_places_id"
+    t.bigint "services_id"
+    t.index ["places_id"], name: "index_service_places_on_places_id"
+    t.index ["services_id"], name: "index_service_places_on_services_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "servicio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tema_personas", force: :cascade do |t|
-    t.integer "theme_id"
-    t.integer "person_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "themes_id"
+    t.bigint "people_id"
+    t.index ["people_id"], name: "index_tema_personas_on_people_id"
+    t.index ["themes_id"], name: "index_tema_personas_on_themes_id"
   end
 
   create_table "themes", force: :cascade do |t|
     t.string "nombre"
     t.string "descripcion"
     t.string "foto"
-    t.integer "tema_persona_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "tema_personas_id"
-    t.index ["tema_personas_id"], name: "index_themes_on_tema_personas_id"
+  end
+
+  create_table "themes_activities", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "themes_id"
+    t.bigint "activities_id"
+    t.index ["activities_id"], name: "index_themes_activities_on_activities_id"
+    t.index ["themes_id"], name: "index_themes_activities_on_themes_id"
   end
 
   create_table "transports", force: :cascade do |t|
     t.string "foto"
     t.string "descripcion"
-    t.integer "excursion_id"
+    t.string "extras"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "activities", "places", column: "places_id"
-  add_foreign_key "activities", "themes", column: "themes_id"
+  add_foreign_key "excursion_personas", "excursions", column: "excursions_id"
+  add_foreign_key "excursion_personas", "people", column: "people_id"
   add_foreign_key "excursions", "activities", column: "activities_id"
-  add_foreign_key "excursions", "excursion_personas", column: "excursion_personas_id"
   add_foreign_key "excursions", "transports", column: "transports_id"
-  add_foreign_key "extras", "transports", column: "transports_id"
   add_foreign_key "payments", "excursions", column: "excursions_id"
   add_foreign_key "payments", "people", column: "people_id"
-  add_foreign_key "people", "excursion_personas", column: "excursion_personas_id"
-  add_foreign_key "people", "tema_personas", column: "tema_personas_id"
   add_foreign_key "photos", "places", column: "places_id"
-  add_foreign_key "services", "places", column: "places_id"
-  add_foreign_key "themes", "tema_personas", column: "tema_personas_id"
+  add_foreign_key "service_places", "places", column: "places_id"
+  add_foreign_key "service_places", "services", column: "services_id"
+  add_foreign_key "tema_personas", "people", column: "people_id"
+  add_foreign_key "tema_personas", "themes", column: "themes_id"
+  add_foreign_key "themes_activities", "activities", column: "activities_id"
+  add_foreign_key "themes_activities", "themes", column: "themes_id"
 end

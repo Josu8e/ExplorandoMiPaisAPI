@@ -1,0 +1,2 @@
+class ThemesActivity < ApplicationRecord
+end

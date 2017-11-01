@@ -4,7 +4,6 @@ class CreateThemes < ActiveRecord::Migration[5.1]
       t.string :nombre
       t.string :descripcion
       t.string :foto
-      t.integer :tema_persona_id
 
       t.timestamps
     end

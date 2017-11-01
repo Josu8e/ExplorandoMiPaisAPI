@@ -5,7 +5,6 @@ class CreateActivities < ActiveRecord::Migration[5.1]
       t.date :fechaFinal
       t.date :horaLlegada
       t.date :horaSalida
-      t.integer :theme_id
       t.integer :place_id
 
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   post 'people/delete'
   get   'people/show'
   get   'people/login'
+  post  'people/reservar'
   #get '/getExcursiones/:parametro' => nombrecontrolador#nombremetodo
 
 end
